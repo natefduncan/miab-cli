@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Optional
 import base64 
 import requests as r
 
@@ -36,5 +36,20 @@ class MailInABox:
         self.error_handling(response)
         return response
 
-    def mail_users(self, format):
+    def mail_users(self, format: str):
         return self.get("/mail/users", format=format).json()
+
+    def mail_aliases(self, format: str):
+        return self.get("/mail/aliases", format=format).json()
+
+    def mail_aliases_add(self, update_if_exists: int, address: str, forwards_to: str, permitted_senders: Optional[str]):
+        return self.post(
+            "/mail/aliases/add", 
+            update_if_exists=update_if_exists,
+            address=address, 
+            forwards_to=forwards_to, 
+            permitted_senders=permitted_senders
+        ).content
+
+    def mail_aliases_remove(self, address: str):
+        return self.post("/mail/aliases/remove", address=address).content
