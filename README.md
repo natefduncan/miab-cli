@@ -5,7 +5,7 @@ Basic Mail-in-a-Box CLI for their API
 ## Installation
 
 - Set up virtual environment: `virtualenv venv && source ./venv/bin/activate`
-- Install package locally: `pip3 install .`
+- Install package locally: `pip3 install --editable .`
 - Copy `.env.template`: `cp .env.template .env` and fill out your variables.
 
 ## Usage
